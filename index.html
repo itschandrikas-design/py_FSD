@@ -1,56 +1,32 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Hospital Management System</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Blood Bank Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+<div class="login-container">
+    <div class="login-box">
+        <h1>🩸 Smart Blood Bank</h1>
+        <p>Management & Intelligent Donor Matching System</p>
 
-<header>
-    <h1>Hospital Management System</h1>
-</header>
-
-<div class="container">
-
-    <h2>Add Patient Details</h2>
-
-    <form action="/add" method="POST">
-        <input type="text" name="name"
-               placeholder="Patient Name" required>
-
-        <input type="number" name="age"
-               placeholder="Patient Age" required>
-
-        <input type="text" name="disease"
-               placeholder="Disease" required>
-
-        <button type="submit">Add Patient</button>
-    </form>
-
-    <h2>Patient Details</h2>
-
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Disease</th>
-            <th>Action</th>
-        </tr>
-
-        <tr>
-            <td>1S12</td>
-            <td>Chandrika</td>
-            <td>20</td>
-            <td>Cold</td>
-            <td>Delete</td>
-            </td>
-        </tr>
-
-
-    </table>
-
+        <h2>Admin Login</h2>
+        <p>Demo login: <strong>admin</strong> / <strong>admin123</strong></p>
+        {% for message in get_flashed_messages() %}
+        <p class="message">{{ message }}</p>
+        {% endfor %}
+        <form action="{{ url_for('login') }}" method="POST">
+            <input type="text" name="username" placeholder="Enter Username"
+            autocomplete="username" required>
+            <input type="password" name="password" placeholder="Enter Password"
+            autocomplete="current-password" required>
+            <button type="submit">Login</button>
+        </form>
+        <a href="/register">Register as a Blood Donor</a>
+    </div>
 </div>
 
 </body>

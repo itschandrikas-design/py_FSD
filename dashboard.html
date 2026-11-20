@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="navbar">
+    <h2>🩸 Smart Blood Bank</h2>
+    <a href="/logout">Logout</a>
+</div>
+
+<div class="container">
+
+    <h1>Admin Dashboard</h1>
+    <p>Welcome to the Blood Bank Management System</p>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Total Donors</h3>
+            <h1>{{ donors }}</h1>
+        </div>
+
+        <div class="card">
+            <h3>Blood Requests</h3>
+            <h1>{{ requests_count }}</h1>
+        </div>
+
+        <div class="card">
+            <h3>Available Blood Units</h3>
+            <h1>{{ inventory }}</h1>
+        </div>
+
+        <div class="card">
+            <h3>Pending Requests</h3>
+            <h1>{{ pending }}</h1>
+        </div>
+
+    </div>
+
+    <div class="menu">
+
+        <a href="/register">➕ Register Donor</a>
+
+        <a href="/donors">👥 View Donors</a>
+
+        <a href="/requests">🩸 Blood Requests</a>
+
+        <a href="/inventory">📦 Blood Inventory</a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="navbar">
+    <h2>🩸 Smart Blood Bank</h2>
+    <a href="/dashboard">Dashboard</a>
+</div>
+
+<div class="container">
+    <h1>Registered Blood Donors</h1>
+    <p>Manage and find compatible blood donors.</p>
+
+    {% for message in get_flashed_messages() %}
+    <p class="message">{{ message }}</p>
+    {% endfor %}
+
+    {% if matching %}
+    <h3>Intelligent Donor Matching Results</h3>
+    <p>Donors are shortlisted using blood group compatibility and location priority.</p>
+    {% endif %}
+    
+
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Blood Group</th>
+                <th>Phone</th>
+                <th>Location</th>
+                    {% if not matching %}
+                    <th>Action</th>
+                    {% endif %}
+            
+            </tr>
+
+            {% for donor in donors %}
+            <tr>
+                <td>{{ donor.id }}</td>
+                <td>{{ donor.name }}</td>
+                <td>{{ donor.age }}</td>
+                <td><span class="blood">{{ donor.blood_group }}</span></td>
+                <td>{{ donor.phone }}</td>
+                <td>{{ donor.location }}</td>
+
+            
+                {% if not matching %}
+                <td>
+                    <a class="delete"
+                    href="/delete_donor/{{ donor.id }}"
+                    onclick="return confirm('Delete this donor?')">
+                    Delete</a>
+                </td>
+                {% endif %}
+                
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="{% if matching %}6{% else %}7{% endif %}">No donors found.</td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+    </div>
+
+    <a class="back" href="/dashboard">← Back to Dashboard</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Registration</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="navbar">
+    <h2>🩸 Blood Bank</h2>
+    <a href="/dashboard">Dashboard</a>
+</div>
+
+<div class="container form-container">
+
+    <h1>Donor Registration</h1>
+
+    {% for message in get_flashed_messages() %}
+    <p class="message">{{ message }}</p>
+    {% endfor %}
+
+    <form method="POST">
+
+        <input type="text" name="name"
+        placeholder="Full Name" required>
+
+        <input type="number" name="age"
+        placeholder="Age (18-65)" min="18" max="65" required>
+
+        <select name="gender">
+            <option value="">Select Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+        </select>
+
+        <select name="blood_group" required>
+            <option value="">Select Blood Group</option>
+            <option>A+</option>
+            <option>A-</option>
+            <option>B+</option>
+            <option>B-</option>
+            <option>AB+</option>
+            <option>AB-</option>
+            <option>O+</option>
+            <option>O-</option>
+        </select>
+
+        <input type="tel" name="phone"
+        placeholder="Phone Number" required>
+
+        <input type="text" name="location"
+        placeholder="City / Location" required>
+
+        <button type="submit">Register Donor</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>
